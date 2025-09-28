@@ -1,14 +1,15 @@
-pipeline{
-  agent any
-  stages{
-    stage('Checking')
-    steps{
-      checking SCM
-      sh '''
-      sudo su -
-      pwd
-      ls -ltr
-      '''
+pipeline {
+    agent any
+
+    stages {
+        stage('Checking') {
+            steps {
+                checkout scm
+                sh '''
+                    pwd
+                    ls -ltr
+                '''
+            }
+        }
     }
-  }
 }
