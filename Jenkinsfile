@@ -20,7 +20,7 @@ pipeline {
                         ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.201.127.99 "sudo dnf install httpd -y"
                        #Copy the git repo's index.html files
                         scp -i "$AppVM" -o StrictHostKeyChecking=no index.html ec2-user@13.201.127.99:/tmp/index.html
-                        scp -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.201.127.99 "sudo mv /tmp/index.html /var/www/html && sudo systemctl restart httpd" 
+                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.201.127.99 "sudo mv /tmp/index.html /var/www/html && sudo systemctl restart httpd" 
                     '''
                 }
             }
