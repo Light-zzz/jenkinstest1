@@ -8,7 +8,7 @@ pipeline {
                 sh '''
                     pwd
                     ls -ltr
-                    Hostname -i
+                    hostname -i
                 '''
             }
         }
