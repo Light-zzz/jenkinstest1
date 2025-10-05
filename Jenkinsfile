@@ -1,39 +1,52 @@
 pipeline {
-    agent {label 'slave2'}
+    agent { label 'slave2' }
 
     stages {
+        stage('Install Git & Python') {
+            steps {
+                sh '''
+                    sudo yum install git -y
+                    sudo yum install python3 -y
+                    sudo yum install python3-pip -y
+                    git --version
+                '''
+            }
+        }
+
         stage('Checking') {
             steps {
                 checkout scm
                 sh '''
                     pwd
-                    ls -ltr
+                    whoami
                     hostname -i
+                    ls
+                '''
+            }
+        }
+        stage('RUN PYTHON') {
+            steps {
+                sh '''
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
+                
                 '''
             }
         }
 
-        stage('Application steps') {
-            steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'slave2', keyFileVariable: 'AppVM')]) {
-                    sh '''
-                        # Install httpd Server
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo dnf install httpd -y && sudo systemctl start httpd"
-
-                        # Copy Multiple Files from Git
-                        scp -i "$AppVM" -o StrictHostKeyChecking=no index.html netflixstyles.css scripts.js styles.css ec2-user@13.233.7.131:/tmp/
-
-                        # Move tmp files and paste to html directory
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/index.html /var/www/html/index.html"
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/netflixstyles.css /var/www/html/netflixstyles.css"
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/scripts.js /var/www/html/scripts.js"
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/styles.css /var/www/html/styles.css"
-
-                        # Restart the httpd server
-                        ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo systemctl restart httpd"
-                    '''
-                }
-            }
-        }
+        // Uncomment and use this when ready
+        // stage('Application steps') {
+        //     steps {
+        //         withCredentials([sshUserPrivateKey(credentialsId: 'slave2', keyFileVariable: 'AppVM')]) {
+        //             sh '''
+        //                 ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo dnf install httpd -y && sudo systemctl start httpd"
+        //                 scp -i "$AppVM" -o StrictHostKeyChecking=no index.html netflixstyles.css scripts.js styles.css ec2-user@13.233.7.131:/tmp/
+        //                 ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/*.html /var/www/html/"
+        //                 ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/*.css /var/www/html/"
+        //                 ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo mv /tmp/*.js /var/www/html/"
+        //                 ssh -i "$AppVM" -o StrictHostKeyChecking=no ec2-user@13.233.7.131 "sudo systemctl restart httpd"
+        //             '''
+        //         }
+        //     }
+        // }
     }
 }
