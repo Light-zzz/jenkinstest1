@@ -27,7 +27,7 @@ pipeline {
         stage('RUN PYTHON') {
             steps {
                 sh '''
-                mkdir /opt/test12/
+                sudo mkdir /opt/test12/
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/test12/sample.py
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/test12/required.txt
                 cd /opt/test12/
