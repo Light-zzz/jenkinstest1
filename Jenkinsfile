@@ -27,10 +27,9 @@ pipeline {
         stage('RUN PYTHON') {
             steps {
                 sh '''
-                sudo mkdir /opt/test12/
-                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/test12/sample.py
-                cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/test12/required.txt
-                cd /opt/test12/
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /home/ec2-user/python/sample.py
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /home/ec2-user/python/required.txt
+                cd /home/ec2-user/python/
                 pip3 install -r required.txt
                 nohup python3 sample.py > sample 2>&1 &
                 '''
