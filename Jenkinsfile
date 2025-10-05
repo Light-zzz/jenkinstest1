@@ -31,6 +31,7 @@ pipeline {
                 cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /home/ec2-user/python/required.txt
                 cd /home/ec2-user/python/
                 pip3 install -r required.txt
+                pkill -f sample.py || true
                 nohup python3 sample.py > sample 2>&1 &
                 '''
             }
