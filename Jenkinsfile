@@ -28,8 +28,8 @@ pipeline {
             steps {
                 sh '''
                 sudo mkdir /opt/test12/
-                sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/test12/sample.py
-                sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/test12/required.txt
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/test12/sample.py
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/test12/required.txt
                 cd /opt/test12/
                 pip3 install -r required.txt
                 nohup python3 sample.py > sample 2>&1 &
