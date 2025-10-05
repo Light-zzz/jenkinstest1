@@ -30,7 +30,7 @@ pipeline {
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/requirement.txt
                 cd /opt/
-                sudo pip install -r requirement.txt
+                sudo python3 -m pip install -r requirement.txt
                 sudo nohup python3 sample.py
                 '''
             }
