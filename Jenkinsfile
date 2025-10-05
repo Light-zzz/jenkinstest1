@@ -27,9 +27,9 @@ pipeline {
         stage('RUN PYTHON') {
             steps {
                 sh '''
-                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
-                pip install -r requirement.py
-                nohup python3 sample.py
+                sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
+                sudo pip install -r requirement.py
+                sudo nohup python3 sample.py
                 '''
             }
         }
