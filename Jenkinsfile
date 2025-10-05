@@ -27,7 +27,8 @@ pipeline {
         stage('RUN PYTHON') {
             steps {
                 sh '''
-                cp 
+                cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
+                
                 '''
             }
         }
