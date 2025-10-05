@@ -31,8 +31,7 @@ pipeline {
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/required.txt
                 cd /opt/
                 pip3 install -r required.txt
-                sudo chmod +x sample.py
-                sudo nohup python3 sample.py > sample 2>&1 &
+                nohup python3 sample.py > sample 2>&1 &
                 '''
             }
         }
