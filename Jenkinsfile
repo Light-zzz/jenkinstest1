@@ -28,7 +28,7 @@ pipeline {
             steps {
                 sh '''
                 sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
-                sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/required.txt
+                sudo cp /home/ec2-user/dipesh/workspace/Jobs/job3/required.txt /opt/required.txt
                 cd /opt/
                 pip3 install -r required.txt
                 sudo nohup python3 sample.py
