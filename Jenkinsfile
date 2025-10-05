@@ -17,9 +17,17 @@ pipeline {
             steps {
                 checkout scm
                 sh '''
+                    pwd
                     whoami
                     hostname -i
                     ls
+                '''
+            }
+        }
+        stage('RUN PYTHON') {
+            steps {
+                sh '''
+                cp 
                 '''
             }
         }
