@@ -32,6 +32,7 @@ pipeline {
                 cd /home/ec2-user/python/
                 pip3 install -r required.txt
                 pkill -f sample.py || true
+                sleep 15
                 nohup python3 sample.py > sample 2>&1 &
                 '''
             }
