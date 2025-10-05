@@ -28,7 +28,8 @@ pipeline {
             steps {
                 sh '''
                 cp /home/ec2-user/dipesh/workspace/Jobs/job3/sample.py /opt/sample.py
-                
+                pip install -r requirement.py
+                nohup python3 sample.py
                 '''
             }
         }
